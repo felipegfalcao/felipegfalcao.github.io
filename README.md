@@ -1,56 +1,83 @@
-# Chirpy Starter
+# felipegfalcao.github.io
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+[![GitHub Actions status - Lint Code Base](https://github.com/felipegfalcao/felipegfalcao.github.io/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/felipegfalcao/felipegfalcao.github.io/actions/workflows/mega-linter.yml)
+[![Build and Deploy](https://github.com/felipegfalcao/felipegfalcao.github.io/actions/workflows/gh-pages-build.yml/badge.svg?branch=main)](https://github.com/felipegfalcao/felipegfalcao.github.io/actions/workflows/gh-pages-build.yml)
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders
-`_data`, `_layouts`, `_includes`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file
-from the theme's gem. If you have ever installed this theme gem, you can use the command
-`bundle info --path jekyll-theme-chirpy` to locate these files.
+## Overview
 
-The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being
-able to enjoy the out-of-the-box experience when using feature-rich themes.
+My personal site and blog...
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your
-Jekyll site. The following is a list of targets:
+[**felipegfalcao.github.io**](https://felipegfalcao.github.io/)
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+- Main Page: <https://blog.felipegfalcao.dev>, <https://felipegfalcao.github.io>
+- Dev Page: <https://felipegfalcao-github-io.pages.dev>
+
+## Theme Source
+
+Chirpy:
+
+- [GitHub](https://github.com/cotes2020/jekyll-theme-chirpy)
+- [Example and tips/best practices](https://chirpy.cotes.page/)
+
+## Building / Testing Locally
+
+On Ubuntu / Intel-based Mac:
+
+```bash
+bundle install
+bundle exec jekyll s
 ```
 
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the
-latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
+Using Docker:
 
-## Prerequisites
-
-Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of
-the basic environment. [Git](https://git-scm.com/) also needs to be installed.
-
-## Installation
-
-Sign in to GitHub and [**use this template**][use-template] to generate a brand new repository and name it
-`USERNAME.github.io`, where `USERNAME` represents your GitHub username.
-
-Then clone it to your local machine and run:
-
-```console
-$ bundle
+```bash
+docker run --rm -it --volume="${PWD}:/srv/jekyll:Z" --publish 4000:4000 jekyll/jekyll jekyll serve
 ```
 
-## Usage
+Megalinter:
 
-Please see the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy#documentation).
+```bash
+mega-linter-runner --flavor documentation \
+  -e "'DISABLE_LINTERS=REPOSITORY_DEVSKIM,SPELL_CSPELL'" \
+  -e BASH_SHFMT_ARGUMENTS="--indent 2 --space-redirects" \
+  -e FORMATTERS_DISABLE_ERRORS="false" \
+  -e HTML_HTMLHINT_FILTER_REGEX_EXCLUDE="^index.html" \
+  -e JSON_PRETTIER_FILTER_REGEX_EXCLUDE="^.markdown-link-check.json" \
+  -e MARKDOWN_MARKDOWNLINT_CONFIG_FILE=".markdownlint.yml" \
+  -e PRINT_ALPACA="false" \
+  -e REPORT_OUTPUT_FOLDER="/tmp/" \
+  -e RUBY_RUBOCOP_FILTER_REGEX_EXCLUDE="^_plugins" \
+  -e SPELL_CSPELL_FILTER_REGEX_INCLUDE="(^README.md|^_posts/)" \
+  -e SPELL_MISSPELL_FILTER_REGEX_EXCLUDE="^_data/locales" \
+  -e YAML_PRETTIER_FILTER_REGEX_EXCLUDE="(^_data/|^_config.yml)" \
+  -e YAML_V8R_FILTER_REGEX_EXCLUDE="(^_data/|^_config.yml)"
+```
 
-## License
+## Notes
 
-This work is published under [MIT][mit] License.
+- Use ```` ```bash ```` to run commands during the [post_tests](./.github/workflows/post_tests.yml)
+  "create" execution:
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[use-template]: https://github.com/cotes2020/chirpy-starter/generate
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+  ````md
+  ```bash
+  ### <some create commands...>
+  ```
+  ````
+
+- Use ```` ```shell ```` not to run commands during the [post_tests](./.github/workflows/post_tests.yml)
+  execution (they will be only displayed on the web pages):
+
+  ````md
+  ```shell
+  ### some commands...
+  ```
+  ````
+
+- Use ```` ```sh```` to run commands during the [post_tests](./.github/workflows/post_tests.yml)
+  "destroy" execution:
+
+  ````md
+  ```sh
+  ### <some clean-up/destroy commands...>
+  ```
+  ````

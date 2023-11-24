@@ -22,7 +22,6 @@ description: >- # used by seo meta and the atom feed
   Blogging about SRE, Kubernets, tips, ...
 
 # Fill in the protocol & hostname for your site.
-# e.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://felipegfalcao.github.io"
 
 github:
@@ -38,7 +37,7 @@ social:
   email: felipegfalcao.dev@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    #- https://twitter.com/username # change to your twitter homepage
+    #- https://twitter.com/felipegfalcao # change to your twitter homepage
     - https://github.com/felipegfalcao # change to your github homepage
     # Uncomment below to add more social links
     - https://www.instagram.com/username
@@ -69,7 +68,6 @@ theme_mode: # [light|dark]
 # Notice that once it is assigned, the CDN url
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
-# e.g. 'https://cdn.com'
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
