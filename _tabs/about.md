@@ -11,5 +11,5 @@ order: 4
 ⚡ To contact me:
 
 - Leave a comment on one of my [posts](https://felipegfalcao.github.io)
-- [Message me on LinkedIn](in/felipegfalcao/)
+- [Message me on LinkedIn](https://linkedin.com/in/felipegfalcao)
 - Send me an [email](mailto:felipegfalcao.dev@gmail.com)
