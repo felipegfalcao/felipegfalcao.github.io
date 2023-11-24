@@ -35,6 +35,19 @@ jobs:
           # If using the 'assets' git submodule from Chirpy Starter, uncomment above
           # (See: https://github.com/cotes2020/chirpy-starter/tree/main/assets)
 
+      - name: Set Variables
+        id: variables
+        run: |
+          set -euo pipefail
+          CLOUDFLARE_PAGES_PROJECT=$(echo "${GITHUB_REPOSITORY#*/}" | tr . - )
+
+          BASE_DOMAIN="${GITHUB_REPOSITORY#*/}"
+          
+          echo "BASE_DOMAIN=${BASE_DOMAIN}" | tee -a "${GITHUB_OUTPUT}"
+          echo "CLOUDFLARE_PAGES_PROJECT=${CLOUDFLARE_PAGES_PROJECT}" | tee -a "${GITHUB_OUTPUT}"
+          sed -i "s@^url: .*@url: 'https://${BASE_DOMAIN}'@" _config.yml
+          mkdir public
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
@@ -60,6 +73,29 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
+      
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true
+        
+      - name: Restore lychee cache
+        uses: actions/cache@v3
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ github.sha }}
+          restore-keys: cache-lychee-
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: "--cache --max-cache-age 1d https://${{ steps.variables.outputs.BASE_DOMAIN }}"
+          fail: ${{ inputs.skip_link_checker && 'false' || 'true' }}
 
   deploy:
     environment:
