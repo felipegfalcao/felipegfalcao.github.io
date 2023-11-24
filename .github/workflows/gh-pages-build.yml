@@ -1,31 +1,25 @@
-name: "Build and Deploy"
+name: gh-pages-build
+
 on:
-  push:
-    branches:
-      - main
-      - master
-    paths-ignore:
-      - .gitignore
-      - README.md
-      - LICENSE
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      skip_link_checker:
+        description: "Skip Link Checker"
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches-ignore:
+      - renovate/**
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment.
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+permissions: read-all
 
 jobs:
-  build:
+  gh-pages-build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      deployments: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
