@@ -16,10 +16,10 @@ timezone: America/Sao_Paulo
 
 title: Felipe Falcao # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the sub-title
+tagline: SRE • AWS Certified • Kubernetes • Terraform • Cloud Engineer # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Blogging about SRE, Kubernets, tips, ...
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -44,7 +44,7 @@ social:
     - https://www.instagram.com/username
     - https://www.linkedin.com/in/felipegfalcao
 
-google_site_verification: # fill in to your verification string
+google_site_verification: E2r4mNtIqFq1DBo0fr6F1W0Uph2f3FwCpHXpqKncKA8 # fill in to your verification string
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
