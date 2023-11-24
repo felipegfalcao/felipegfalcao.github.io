@@ -34,6 +34,7 @@ exclude = [
   '.*\$%7B.*%7D.*',
   # Ignore all URLS with ${{ }} - used in renovate configuration: "https://grafana.com/api/dashboards/{{packageName}}"
   '.*%7B%7B.*%7D%7D.*',
+  
 ]
 
 # Exclude these filesystem paths from getting checked

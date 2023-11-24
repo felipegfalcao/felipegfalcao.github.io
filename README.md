@@ -55,7 +55,7 @@ mega-linter-runner --flavor documentation \
 
 ## Notes
 
-- Use ```` ```bash ```` to run commands during the post_tests
+- Use ` ```bash ` to run commands during the post_tests
   "create" execution:
 
   ````md
@@ -64,7 +64,7 @@ mega-linter-runner --flavor documentation \
   ```
   ````
 
-- Use ```` ```shell ```` not to run commands during the post_tests
+- Use ` ```shell ` not to run commands during the post_tests
   execution (they will be only displayed on the web pages):
 
   ````md
@@ -73,7 +73,7 @@ mega-linter-runner --flavor documentation \
   ```
   ````
 
-- Use ```` ```sh```` to run commands during the post_tests
+- Use ` ```sh` to run commands during the post_tests
   "destroy" execution:
 
   ````md
