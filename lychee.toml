@@ -27,8 +27,8 @@ exclude = [
   'fonts\.(googleapis|gstatic)\.com',
   'www.googletagmanager.com',
   'felipegfalcao\.github\.io/projects/',
-  # Due to: [TIMEOUT] https://twitter.com/Ruzicka_Petr | Timeout
-  'twitter\.com/Ruzicka_Petr',
+  # Due to: [TIMEOUT] https://twitter.com/felipegfalcao | Timeout
+  'twitter\.com/felipegfalcao',
   'k01\.k8s\.mylabs\.dev',
   # Ignore all URLS with ${.*} - BASH variable in URL
   '.*\$%7B.*%7D.*',
