@@ -1,0 +1,84 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  automerge: true,
+  automergeType: "branch",
+  customDatasources: {
+    "grafana-dashboards": {
+      defaultRegistryUrlTemplate: "https://grafana.com/api/dashboards/{{packageName}}",
+      format: "json",
+      transformTemplates: ['{"releases":[{"version": $string(revision)}]}'],
+    },
+  },
+  // ignore chirpy dependencies
+  // https://renovatebot.com/docs/configuration-options/#ignoredeps
+  ignoreDeps: ["http_parser.rb", "html-proofer"],
+  ignoreTests: true,
+  labels: [
+    "renovate",
+    "renovate/{{replace '.*/' '' depName}}",
+    "renovate/{{updateType}}",
+  ],
+  packageRules: [
+    {
+      matchUpdateTypes: ["patch"],
+    },
+    {
+      description: "Ignore frequent renovate updates",
+      enabled: false,
+      matchPackageNames: ["renovatebot/github-action"],
+      matchUpdateTypes: ["patch"],
+    },
+    {
+      ignoreTests: false,
+      matchPackageNames: ["renovatebot/github-action"],
+      matchUpdateTypes: ["minor"],
+      schedule: ["* * * * 0"],
+    },
+    {
+      description: "AutoMerge eksctl",
+      matchPackageNames: ["weaveworks/eksctl"],
+      matchUpdateTypes: ["minor", "patch"],
+    },
+    {
+      description: "AutoMerge kube-prometheus-stack helm chart version",
+      matchDatasources: ["helm"],
+      matchPackagePatterns: ["(^|\\/)kube-prometheus-stack$"],
+      matchUpdateTypes: ["major", "minor"],
+    },
+    {
+      description: "Update all github-actions by default",
+      ignoreTests: false,
+      matchManagers: ["github-actions"],
+    },
+    {
+      description: "Grafana Dashboards",
+      matchDatasources: ["custom.grafana-dashboards"],
+      matchUpdateTypes: ["major"],
+    },
+  ],
+  prBodyTemplate: "{{{table}}}{{{notes}}}{{{changelogs}}}",
+  rebaseWhen: "behind-base-branch",
+  regexManagers: [
+    {
+      extractVersionTemplate: "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}",
+      fileMatch: ["\\.ya?ml$", "\\.md$"],
+      matchStrings: [
+        '# renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.*[=:]\\s*"?(?<currentValue>.+?)"?\\s',
+      ],
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+    },
+    {
+      datasourceTemplate: "custom.grafana-dashboards",
+      fileMatch: ["\\.md$"],
+      matchStrings: [
+        '#\\s+renovate:\\s+depName="(?<depName>.*)"\\n\\s+gnetId:\\s+(?<packageName>.*?)\\n\\s+revision:\\s+(?<currentValue>.*)',
+      ],
+      versioningTemplate: "regex:^(?<major>\\d+)$",
+    },
+  ],
+  separateMinorPatch: true,
+  vulnerabilityAlerts: {
+    commitMessagePrefix: "chore(renovate): Security update",
+    labels: ["security"],
+  },
+}
