@@ -50,7 +50,7 @@ google_site_verification: E2r4mNtIqFq1DBo0fr6F1W0Uph2f3FwCpHXpqKncKA8 # fill in 
 # The end of `jekyll-seo-tag` settings
 
 google_analytics:
-  id: # fill in your Google Analytics ID
+  id: G-NSV2JMEYHD # fill in your Google Analytics ID
 
 # Prefer color scheme setting.
 #
@@ -63,7 +63,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode: dark # [light|dark]
+theme_mode: # [light|dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
