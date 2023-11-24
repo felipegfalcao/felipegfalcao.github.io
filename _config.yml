@@ -37,10 +37,9 @@ social:
   email: felipegfalcao.dev@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    #- https://twitter.com/felipegfalcao # change to your twitter homepage
     - https://github.com/felipegfalcao # change to your github homepage
     # Uncomment below to add more social links
-    - https://www.instagram.com/username
+    - https://www.instagram.com/felipegfalcaos
     - https://www.linkedin.com/in/felipegfalcao
 
 google_site_verification: fkhiINMD9MIng2G46gz-w6rEA_xGMGW3Ad-Kx_FsZYk # fill in to your verification string
