@@ -1,5 +1,15 @@
 # Changelog
 # Changelog
+## 1.0.2 (2023-11-28)
+
+## What's Changed
+* chore(deps): update renovatebot/github-action action to v39.1.3 by @renovate in https://github.com/felipegfalcao/felipegfalcao.github.io/pull/8
+
+## New Contributors
+* @renovate made their first contribution in https://github.com/felipegfalcao/felipegfalcao.github.io/pull/8
+
+**Full Changelog**: https://github.com/felipegfalcao/felipegfalcao.github.io/compare/v1.0.1...v1.0.2
+
 ## 1.0.1 (2023-11-24)
 ## 1.0.1 (2023-11-24)
 
